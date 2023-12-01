@@ -112,6 +112,10 @@
       paths = [ wrapper pkgs.rofi-wayland ]; # first ./bin/rofi takes precedence
     };
 
+    packages.x86_64-linux.drun = pkgs.writeShellScriptBin "drun" ''
+      ${inputs.self.packages.x86_64-linux.rofi}/bin/rofi -show drun -i -drun-display-format {name} -theme-str 'entry { placeholder: "Launch"; }'
+    '';
+
     packages.x86_64-linux.default = inputs.self.packages.x86_64-linux.rofi;
 
   };
